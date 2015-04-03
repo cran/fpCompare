@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Reliable comparison of floating point numbers</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Reliable comparison of floating point numbers</h1>
+
+<p>Comparisons of floating point numbers are problematic due to errors associated with the binary representation of decimal numbers. Computer scientists and programmers are aware of these problems [<em>.e.g.</em>, @Goldberg:1991ac] and yet people still use numerical methods which fail to account for floating point errors (this pitfall is the first to be highlighted in the First Circle of &ldquo;The R Inferno&rdquo; [@Burns:2012ri]).</p>
+
+<p>To avoid these and other numerical rounding issues, R&#39;s help file for relational operators (<em>e.g.</em>, <code>?&#39;&gt;&#39;</code>) suggests using <code>identical</code> and <code>all.equal</code> when making numerical comparisons:</p>
+
+<pre><code>x1 &lt;- 0.5 - 0.3
+x2 &lt;- 0.3 - 0.1
+x1 == x2                           # FALSE on most machines
+identical(all.equal(x1, x2), TRUE) # TRUE everywhere
+</code></pre>
+
+<p>Inspired by <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f">R FAQ 7.31</a> and <a href="http://stackoverflow.com/a/2769618/1380598">this Stack Overflow answer</a>, this package provides four new relational operators useful for performing floating point number comparisons[<sup>1]</sup> with a set tolerance:</p>
+
+<ul>
+<li><code>%&gt;=%</code></li>
+<li><code>%&lt;=%</code></li>
+<li><code>%==%</code></li>
+<li><code>%!=%</code></li>
+</ul>
+
+<p>These functions use the <code>base</code> relational operators to make comparisons, but like <code>all.equal</code>, incorporate a tolerance value (<code>fpCompare.tolerance</code>). The default <code>fpCompare.tolerance</code> value is <code>.Machine$double.eps^0.5</code>, set via <code>options</code>. This is the same default vaule used in <code>all.equal</code> for numeric comparisons.</p>
+
+<pre><code>x1 &lt;- 0.5 - 0.3
+x2 &lt;- 0.3 - 0.1
+x1 == x2         # FALSE on most machines
+x1 %==% x2       # TRUE everywhere
+</code></pre>
+
+<p>[<sup>1]:</sup> The <code>%&lt;=%</code> and <code>%&gt;=%</code> symbols are used instead of <code>%&lt;%</code> and <code>%&gt;%</code> to avoid a conflict with <code>magrittr</code>&#39;s pipe operator (<code>%&gt;%</code>).</p>
+
+<h2>Installation</h2>
+
+<p>From GitHub:</p>
+
+<pre><code>library(devtools)
+install_github(&quot;achubaty/fpCompare&quot;)
+</code></pre>
+
+<h2>Bug Reports</h2>
+
+<p><a href="https://github.com/PredictiveEcology/fpCompare">https://github.com/PredictiveEcology/fpCompare/issues</a></p>
+
+<h1>References</h1>
+
+</body>
+
+</html>

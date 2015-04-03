@@ -1,0 +1,15 @@
+5bce2be86bdfb5ee493f2f513cb4b8d8 *DESCRIPTION
+2bb72f970fc95118961ed37f0f9d9cf9 *NAMESPACE
+5ce29982bf82f916d3598ddda70a4bb0 *NEWS
+6ba5334891cbaaa6be70fe554168829e *R/fpCompare.R
+c27368a70407432d2b3d67f767040495 *R/zzz.R
+777e73c53b948d74cc2b5b5d18e2d6a8 *README.md
+7c6c20fbaf1e080537c7727385d7b329 *build/vignette.rds
+93c095d750d98b5a72f7685ae737979d *inst/doc/fpCompare.Rmd
+77c47d27ec72ff8e9f738e96bfc57195 *inst/doc/fpCompare.html
+6c492edcb55b53887740401146290845 *inst/examples/examples.R
+f2273f08ff4a245384aa4b042870fe8f *man/relational-operators.Rd
+483b4e18ee328a5477b2dbbedad8cd88 *tests/test-all.R
+008294f84307085a3743e8225c126ae3 *tests/testthat/test-numerical-comparisons.R
+bcbf7e0f40f773bc7e07597d06a571ae *vignettes/bibliography.bib
+93c095d750d98b5a72f7685ae737979d *vignettes/fpCompare.Rmd
