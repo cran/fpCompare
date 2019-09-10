@@ -1,12 +1,12 @@
-294ec8179af40ae3129817b58441c9de *DESCRIPTION
+65386d38cf40d31b138bae7f895d9384 *DESCRIPTION
 325ac3fc13a6c7bf8b12c63586573b1f *NAMESPACE
-1c68896ed423312c9d5899bca314c564 *NEWS.md
+7255fac98a3ff1f3980d0c29dbb40964 *NEWS.md
 15f321c05a60e896c572fb1d45a6930e *R/fpCompare.R
 e79bd1bf361e58d35f1f272d17471e90 *R/zzz.R
 0e1b0170730241f203cb712e185d3e5a *README.md
-4b871b4abbde508aeb29193090fe5e89 *build/vignette.rds
+a57544dd2dd2c283cdbae02860442389 *build/vignette.rds
 ff0b1ae50b1f1274e0790bfac57e82e0 *inst/doc/fpCompare.Rmd
-49415369f65ef3a9a15998b3f6901927 *inst/doc/fpCompare.pdf
+75ee3a09de88680647ed4fad861931a2 *inst/doc/fpCompare.pdf
 9c364ca246527ce4514260aabe0ee679 *inst/examples/examples.R
 8efc7e536bd8c5c0e6661f49c84a2052 *man/relational-operators.Rd
 483b4e18ee328a5477b2dbbedad8cd88 *tests/test-all.R
